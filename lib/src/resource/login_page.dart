@@ -60,7 +60,9 @@ class _LoginState extends State<LoginPage> {
                       style: TextStyle(color: Colors.black, fontSize: 20),
                       decoration: InputDecoration(
                           labelText: "USERNAME",
-                          errorText: snapshot.hasError ? snapshot.error : null,
+                          errorText: snapshot.hasError
+                              ? snapshot.error.toString()
+                              : null,
                           labelStyle: TextStyle(
                               color: Color(0xff888888), fontSize: 15)),
                     ),
