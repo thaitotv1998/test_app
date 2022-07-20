@@ -57,6 +57,7 @@ class _LoginState extends State<LoginPage> {
                   child: StreamBuilder(
                     stream: loginBloc.userStream,
                     builder: (BuildContext context, snapshot) => TextField(
+                      controller: _userController,
                       style: TextStyle(color: Colors.black, fontSize: 20),
                       decoration: InputDecoration(
                           labelText: "USERNAME",
