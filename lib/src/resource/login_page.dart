@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:test_app/src/resource/register_page.dart';
 import '../../BloC/login_bloc.dart';
 import 'home_page.dart';
 
@@ -60,17 +62,23 @@ class _LoginState extends State<LoginPage> {
                       controller: _userController,
                       style: TextStyle(color: Colors.black, fontSize: 20),
                       decoration: InputDecoration(
-                          labelText: "USERNAME",
-                          errorText: snapshot.hasError
-                              ? snapshot.error.toString()
-                              : null,
-                          labelStyle: TextStyle(
-                              color: Color(0xff888888), fontSize: 15)),
+                        labelText: "USERNAME",
+                        errorText: snapshot.hasError
+                            ? snapshot.error.toString()
+                            : null,
+                        labelStyle:
+                            TextStyle(color: Color(0xff888888), fontSize: 15),
+                        border: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.black, width: 1),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15))),
+                      ),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                   child: Stack(
                     alignment: AlignmentDirectional.centerEnd,
                     children: [
@@ -83,23 +91,42 @@ class _LoginState extends State<LoginPage> {
                           style: TextStyle(color: Colors.black, fontSize: 20),
                           obscureText: !_showPass,
                           decoration: InputDecoration(
-                              labelText: "PASSWORD",
-                              errorText: snapshot.hasError
-                                  ? snapshot.error.toString()
-                                  : null,
-                              labelStyle: TextStyle(
-                                  color: Color(0xff888888), fontSize: 15)),
+                            labelText: "PASSWORD",
+                            errorText: snapshot.hasError
+                                ? snapshot.error.toString()
+                                : null,
+                            labelStyle: TextStyle(
+                                color: Color(0xff888888), fontSize: 15),
+                            border: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 1),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15))),
+                          ),
                         ),
                       ),
-                      GestureDetector(
-                        onTap: onToggleShowPass,
-                        child: Text(_showPass ? "HIDE" : "SHOW",
-                            style: TextStyle(
-                                color: Colors.blue,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold)),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                        child: GestureDetector(
+                          onTap: onToggleShowPass,
+                          child: Text(_showPass ? "HIDE" : "SHOW",
+                              style: TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold)),
+                        ),
                       ),
                     ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                  child: Container(
+                    constraints:
+                        BoxConstraints.loose(Size(double.infinity, 20)),
+                    alignment: AlignmentDirectional.centerEnd,
+                    child: Text("Forgot Password?",
+                        style: TextStyle(color: Colors.grey, fontSize: 15)),
                   ),
                 ),
                 Padding(
@@ -108,9 +135,9 @@ class _LoginState extends State<LoginPage> {
                     width: double.infinity,
                     height: 60,
                     child: RaisedButton(
-                      color: Colors.blue,
+                      color: Colors.blueAccent,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(50))),
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
                       onPressed: onSignInClick,
                       child: Text("SIGN IN",
                           style: TextStyle(
@@ -120,20 +147,34 @@ class _LoginState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                Container(
-                  height: 120,
-                  width: double.infinity,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("NEW USER? SIGN UP",
-                          style: TextStyle(color: Colors.grey, fontSize: 15)),
-                      Text("FORGOT PASSWORD?",
-                          style: TextStyle(
-                              color: Colors.blueAccent, fontSize: 15)),
-                    ],
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 40, 0, 40),
+                  child: Container(
+                    alignment: AlignmentDirectional.center,
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                              text: "New user? ",
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 15)),
+                          TextSpan(
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => RegisterPage()));
+                              },
+                            text: "Sign up for a new account",
+                            style: TextStyle(
+                                color: Colors.blueAccent, fontSize: 15),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                )
+                ),
               ],
             )),
       ),
@@ -154,3 +195,5 @@ class _LoginState extends State<LoginPage> {
     });
   }
 }
+
+class _longPressRecognizer {}
