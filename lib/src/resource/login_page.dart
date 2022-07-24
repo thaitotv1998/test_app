@@ -48,10 +48,10 @@ class _LoginState extends State<LoginPage> {
                   child: Text(
                     "Hello\nWelcome back!",
                     style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
+                        color: Colors.black,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'RobotoMono'),
                   ),
                 ),
                 Padding(

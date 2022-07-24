@@ -11,9 +11,9 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(MyApp()
-    // DevicePreview(
-    //   enabled: !kReleaseMode,
-    //   builder: (context) => MyApp(), // Wrap your app
-    // ),
-  );
+      // DevicePreview(
+      //   enabled: !kReleaseMode,
+      //   builder: (context) => MyApp(), // Wrap your app
+      // ),
+      );
 }

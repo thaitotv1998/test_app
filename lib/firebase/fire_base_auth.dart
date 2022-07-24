@@ -9,7 +9,7 @@ class FireAuth {
     _firebaseAuth
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((user) {
-      _createUser("1", name, phone, onSuccess);
+      _createUser("2", name, phone, onSuccess);
     }).catchError((err) {
       // TODO:
     });
