@@ -9,7 +9,7 @@ class FireAuth {
     _firebaseAuth
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((user) {
-      _createUser("abc", name, phone, onSuccess);
+      _createUser("1", name, phone, onSuccess);
     }).catchError((err) {
       // TODO:
     });
@@ -17,9 +17,7 @@ class FireAuth {
 
   _createUser(String userId, String name, String phone, Function onSuccess) {
     var user = {"name": name, "phone": phone};
-
     var ref = FirebaseDatabase.instance.reference().child("users");
-
     ref.child(userId).set(user).then((user) {
       //success
       onSuccess();
